@@ -3,7 +3,7 @@ import './App.css';
 import Titulo from './components/Titulo';
 import Formulario from './components/Formulario';
 import Noticias from './components/Noticias';
-import { ARRAY_CATEGORIAS, API_KEY } from './constantes';
+import { ARRAY_CATEGORIAS, API_KEY, ARRAY_PAISES } from './constantes';
 import apiBusinessEmergencia from './mocks/apiBusinessEmergencia.json';
 import apiEntertainmentEmergencia from './mocks/apiEntertainmentEmergencia.json';
 import apiGeneralEmergencia from './mocks/apiGeneralEmergencia.json';
@@ -14,16 +14,21 @@ import apiTechnologyEmergencia from './mocks/apiTechnologyEmergencia.json';
 
 function App() {
   let datos = '';
+  const [categoria, setCategoria] = useState(ARRAY_CATEGORIAS[0]);
+  const [pais, setPais] = useState(ARRAY_PAISES[1]);
   const [noticias, setNoticias] = useState([]);
-  const consultaAPI = async (categoria) => {
+  const getCategoria = (valor) => {
+    setCategoria(valor);
+  };
+  const getPais = (valor) => {
+    setPais(valor);
+  };
+  const consultaAPI = async () => {
     const respuesta = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=ar&category=${categoria}&apiKey=${API_KEY}`
+      `https://newsapi.org/v2/top-headlines?country=${pais}&category=${categoria}&apiKey=${API_KEY}`
     );
     datos = await respuesta.json();
-    console.log(datos);
     if (respuesta.status < 400) {
-      console.log(datos.articles);
-      console.log(apiEmergencia.articles);
       setNoticias(datos.articles);
     } else {
       if (categoria == 'business') {
@@ -44,15 +49,21 @@ function App() {
     }
   };
   useEffect(() => {
-    consultaAPI(ARRAY_CATEGORIAS[0]);
+    consultaAPI();
   }, []);
-  useEffect(() => {}, [noticias]);
+  useEffect(() => {
+    consultaAPI();
+  }, [categoria, pais]);
   return (
     <>
       <Titulo />
       <div className='contenedorPrincipal'>
         <div className='contenedorFormulario'>
-          <Formulario consultaAPI={consultaAPI} />
+          <Formulario
+            consultaAPI={consultaAPI}
+            getCategoria={getCategoria}
+            getPais={getPais}
+          />
         </div>
         <div className='contenedorNoticias'>
           <Noticias noticias={noticias} />
