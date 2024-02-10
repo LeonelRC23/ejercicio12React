@@ -1,0 +1,59 @@
+.contenedorImagen > img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.cardNoticia {
+  padding: 0.5rem;
+}
+
+.cardNoticia > div {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  height: 100%;
+}
+
+.contenedorTitulo > h4 {
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem;
+}
+
+.contenedorDescripcion > p {
+  padding: 0.5rem;
+}
+
+.contenedorBoton {
+  display: flex;
+  justify-content: center;
+}
+
+.contenedorBoton > button {
+  border: 0;
+  width: 90%;
+  height: 2.5rem;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: rgb(86, 86, 206);
+  color: white;
+}
+
+.contenedorBoton > button:hover {
+  transition: 0.3s;
+  background-color: rgb(122, 122, 208);
+}
+
+.contenedorFuente > p {
+  margin: 0;
+  padding: 0.3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
