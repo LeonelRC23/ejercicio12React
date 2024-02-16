@@ -7,7 +7,9 @@ const Formulario = ({ getCategoria, getPais }) => {
     <div>
       <form>
         <div>
-          <label htmlFor='categoria'>Buscar por categoria</label>
+          <label htmlFor='categoria' className='m-2'>
+            Buscar por categoria
+          </label>
           <select
             name='categoria'
             onChange={(event) => {
@@ -22,7 +24,9 @@ const Formulario = ({ getCategoria, getPais }) => {
           </select>
         </div>
         <div>
-          <label htmlFor='pais'>Seleccione el pais</label>
+          <label htmlFor='pais' className='m-2'>
+            Seleccione el pais
+          </label>
           <select
             name='pais'
             onChange={(event) => {
